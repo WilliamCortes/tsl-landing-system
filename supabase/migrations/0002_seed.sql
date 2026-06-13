@@ -41,11 +41,7 @@ insert into landing_pages (
   'Café Mirador Anolaima - Combo para 2',
   'Disfruta de un combo de café especial + postre con la mejor vista de Anolaima.',
   null,
-  array[
-    'https://example.com/cafe-mirador/1.jpg',
-    'https://example.com/cafe-mirador/2.jpg',
-    'https://example.com/cafe-mirador/3.jpg'
-  ],
+  array[]::text[],
   60000, 35000, 45000,
   'CAFE-MIRADOR-001', 'pub_test_xxxxxxxxxxxx', 'test_integrity_xxxxxxxxxxxx', 'COP', 'cafeteria',
   array['Combo para 2 personas', 'Vista panorámica', 'Postre incluido'],

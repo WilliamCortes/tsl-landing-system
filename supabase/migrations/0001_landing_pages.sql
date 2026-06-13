@@ -44,7 +44,8 @@ begin
   new.updated_at = now();
   return new;
 end;
-$$ language plpgsql;
+$$ language plpgsql
+set search_path = '';
 
 create trigger trg_landing_pages_updated_at
 before update on landing_pages
