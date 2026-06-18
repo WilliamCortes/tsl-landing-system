@@ -12,12 +12,14 @@ import BenefitsList from "@/components/landing/BenefitsList";
 import CategoryBadge from "@/components/landing/CategoryBadge";
 import ExpiredState from "@/components/landing/ExpiredState";
 import PaymentStatusBanner from "@/components/landing/PaymentStatusBanner";
+import UrgencyBanner from "@/components/landing/UrgencyBanner";
 import type { LandingExperienceProps } from "@/types/landing";
 import { fetchWompiTransaction, type WompiEnv, type WompiTransactionStatus } from "@/lib/utils/wompi";
 
 export default function LandingExperience({ landing }: LandingExperienceProps) {
   const { state, countdownTarget, startEstado2 } = useVisitState(landing.slug, landing.duracion_oferta_minutos);
   const [paymentStatus, setPaymentStatus] = useState<WompiTransactionStatus | null>(null);
+  const [videoEnded, setVideoEnded] = useState(false);
 
   useEffect(() => {
     if (state === "estado2" && countdownTarget === null) {
@@ -62,7 +64,13 @@ export default function LandingExperience({ landing }: LandingExperienceProps) {
         <CountdownTimer targetTimestamp={countdownTarget} variant={isEstado2 ? "secondary" : "urgent"} />
       )}
 
-      {!isEstado2 && landing.video_url && <VideoPlayer videoUrl={landing.video_url} />}
+      {!isEstado2 && landing.video_url && (
+        <VideoPlayer videoUrl={landing.video_url} onEnded={() => setVideoEnded(true)} />
+      )}
+
+      {!isEstado2 && videoEnded && (
+        <UrgencyBanner nombreOferta={landing.nombre_oferta} />
+      )}
 
       {isEstado2 && landing.imagenes_carrusel.length > 0 && (
         <ImageCarousel images={landing.imagenes_carrusel} />

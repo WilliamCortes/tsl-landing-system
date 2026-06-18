@@ -67,6 +67,7 @@ export interface CountdownTimerProps {
 
 export interface VideoPlayerProps {
   videoUrl: string
+  onEnded?: () => void
 }
 
 export interface ImageCarouselProps {
