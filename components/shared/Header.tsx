@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 const SITE_URL = "https://www.turismosinlimites.com.co";
 
@@ -48,11 +49,15 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-black/5 bg-[var(--color-surface)]">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-3">
         {/* Logo */}
-        <a
-          href={`${SITE_URL}/`}
-          className="shrink-0 text-xl font-bold tracking-tight text-[var(--color-brand-blue)]"
-        >
-          Turismo <span className="text-[var(--color-brand-text)]">Sin Límites</span>
+        <a href={`${SITE_URL}/`} className="shrink-0">
+          <Image
+            src="/cropped-Sin-Limites-2048x606.png"
+            alt="Turismo Sin Límites"
+            width={160}
+            height={47}
+            priority
+            className="h-10 w-auto object-contain"
+          />
         </a>
 
         {/* Nav desktop */}
